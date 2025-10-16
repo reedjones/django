@@ -516,7 +516,7 @@ class BaseExpression:
         return self
 
 
-@deconstructible
+
 class Expression(BaseExpression, Combinable):
     """An expression that can be combined with other expressions."""
 
@@ -874,7 +874,6 @@ class TemporalSubtraction(CombinedExpression):
         )
 
 
-@deconstructible(path="django.db.models.F")
 class F(Combinable):
     """An object capable of resolving references to existing query objects."""
 
@@ -1046,7 +1045,7 @@ class Sliced(F):
         return resolved.output_field.slice_expression(expr, self.start, self.length)
 
 
-@deconstructible(path="django.db.models.Func")
+
 class Func(SQLiteNumericMixin, Expression):
     """An SQL function call."""
 
@@ -1140,7 +1139,7 @@ class Func(SQLiteNumericMixin, Expression):
         return all(expression.allowed_default for expression in self.source_expressions)
 
 
-@deconstructible(path="django.db.models.Value")
+
 class Value(SQLiteNumericMixin, Expression):
     """Represent a wrapped value as a node within an expression."""
 
@@ -1500,7 +1499,6 @@ class OrderByList(ExpressionList):
         )
 
 
-@deconstructible(path="django.db.models.ExpressionWrapper")
 class ExpressionWrapper(SQLiteNumericMixin, Expression):
     """
     An expression that can wrap another expression so that it can provide
@@ -1588,7 +1586,7 @@ class NegatedExpression(ExpressionWrapper):
         return sql, params
 
 
-@deconstructible(path="django.db.models.When")
+
 class When(Expression):
     template = "WHEN %(condition)s THEN %(result)s"
     # This isn't a complete conditional expression, must be used in Case().
@@ -1666,7 +1664,7 @@ class When(Expression):
         return self.condition.allowed_default and self.result.allowed_default
 
 
-@deconstructible(path="django.db.models.Case")
+
 class Case(SQLiteNumericMixin, Expression):
     """
     An SQL searched CASE expression:
@@ -1864,7 +1862,7 @@ class Exists(Subquery):
             return compiler.compile(Value(False))
 
 
-@deconstructible(path="django.db.models.OrderBy")
+
 class OrderBy(Expression):
     template = "%(expression)s %(ordering)s"
     conditional = False

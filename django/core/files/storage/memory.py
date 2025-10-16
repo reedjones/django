@@ -164,7 +164,6 @@ class InMemoryDirNode(TimingMixin):
             del self._children[name]
 
 
-@deconstructible(path="django.core.files.storage.InMemoryStorage")
 class InMemoryStorage(Storage, StorageSettingsMixin):
     """A storage saving files in memory."""
 

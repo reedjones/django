@@ -3,7 +3,7 @@ from django.utils.deconstruct import deconstructible
 from django.utils.version import get_docs_version
 
 
-@deconstructible()
+
 class DeconstructibleClass:
     pass
 
@@ -12,9 +12,6 @@ class DeconstructibleChildClass(DeconstructibleClass):
     pass
 
 
-@deconstructible(
-    path="utils_tests.deconstructible_classes.DeconstructibleWithPathClass"
-)
 class DeconstructibleWithPathClass:
     pass
 
@@ -23,9 +20,7 @@ class DeconstructibleWithPathChildClass(DeconstructibleWithPathClass):
     pass
 
 
-@deconstructible(
-    path="utils_tests.deconstructible_classes.DeconstructibleInvalidPathClass",
-)
+
 class DeconstructibleInvalidPathClass:
     pass
 

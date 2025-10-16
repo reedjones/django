@@ -7,7 +7,7 @@ from django.core.files import File, locks
 from django.core.files.move import file_move_safe
 from django.core.signals import setting_changed
 from django.utils._os import safe_join
-from django.utils.deconstruct import deconstructible
+
 from django.utils.encoding import filepath_to_uri
 from django.utils.functional import cached_property
 
@@ -15,7 +15,7 @@ from .base import Storage
 from .mixins import StorageSettingsMixin
 
 
-@deconstructible(path="django.core.files.storage.FileSystemStorage")
+
 class FileSystemStorage(Storage, StorageSettingsMixin):
     """
     Standard filesystem storage

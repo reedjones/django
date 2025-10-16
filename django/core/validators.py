@@ -16,7 +16,7 @@ from django.utils.translation import ngettext_lazy
 EMPTY_VALUES = (None, "", [], (), {})
 
 
-@deconstructible
+
 class RegexValidator:
     regex = ""
     message = _("Enter a valid value.")
@@ -65,7 +65,7 @@ class RegexValidator:
         )
 
 
-@deconstructible
+
 class DomainNameValidator(RegexValidator):
     message = _("Enter a valid domain name.")
     ul = "\u00a1-\uffff"  # Unicode letters range (must not be a raw string).
@@ -126,7 +126,7 @@ class DomainNameValidator(RegexValidator):
 validate_domain_name = DomainNameValidator()
 
 
-@deconstructible
+
 class URLValidator(RegexValidator):
     # IP patterns
     ipv4_re = (
@@ -206,7 +206,7 @@ def validate_integer(value):
     return integer_validator(value)
 
 
-@deconstructible
+
 class EmailValidator:
     message = _("Enter a valid email address.")
     code = "invalid"
@@ -376,7 +376,7 @@ validate_comma_separated_integer_list = int_list_validator(
 )
 
 
-@deconstructible
+
 class BaseValidator:
     message = _("Ensure this value is %(limit_value)s (it is %(show_value)s).")
     code = "limit_value"
@@ -411,7 +411,7 @@ class BaseValidator:
         return x
 
 
-@deconstructible
+
 class MaxValueValidator(BaseValidator):
     message = _("Ensure this value is less than or equal to %(limit_value)s.")
     code = "max_value"
@@ -420,7 +420,7 @@ class MaxValueValidator(BaseValidator):
         return a > b
 
 
-@deconstructible
+
 class MinValueValidator(BaseValidator):
     message = _("Ensure this value is greater than or equal to %(limit_value)s.")
     code = "min_value"
@@ -429,7 +429,7 @@ class MinValueValidator(BaseValidator):
         return a < b
 
 
-@deconstructible
+
 class StepValueValidator(BaseValidator):
     message = _("Ensure this value is a multiple of step size %(limit_value)s.")
     code = "step_size"
@@ -467,7 +467,7 @@ class StepValueValidator(BaseValidator):
         return not math.isclose(math.remainder(a - offset, b), 0, abs_tol=1e-9)
 
 
-@deconstructible
+
 class MinLengthValidator(BaseValidator):
     message = ngettext_lazy(
         "Ensure this value has at least %(limit_value)d character (it has "
@@ -485,7 +485,7 @@ class MinLengthValidator(BaseValidator):
         return len(x)
 
 
-@deconstructible
+
 class MaxLengthValidator(BaseValidator):
     message = ngettext_lazy(
         "Ensure this value has at most %(limit_value)d character (it has "
@@ -503,7 +503,7 @@ class MaxLengthValidator(BaseValidator):
         return len(x)
 
 
-@deconstructible
+
 class DecimalValidator:
     """
     Validate that the input does not exceed the maximum number of digits
@@ -591,7 +591,7 @@ class DecimalValidator:
         )
 
 
-@deconstructible
+
 class FileExtensionValidator:
     message = _(
         "File extension “%(extension)s” is not allowed. "
@@ -652,7 +652,7 @@ def validate_image_file_extension(value):
     )
 
 
-@deconstructible
+
 class ProhibitNullCharactersValidator:
     """Validate that the string doesn't contain the null character."""
 
